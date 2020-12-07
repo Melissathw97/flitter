@@ -1,27 +1,21 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 import { ApolloProvider } from '@apollo/client';
-import graphqlClient from '../lib/graphqlClient';
+import graphqlClient from './lib/graphqlClient';
+import { Route } from 'react-router-dom';
+import * as routes from './constants/routes';
+
+const SignIn = React.lazy(() =>
+  import('./pages/auth/sign-in')
+);
 
 function App() {
+
   return (
     <ApolloProvider client={graphqlClient}>
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-        </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-        </a>
-        </header>
-      </div>
+      <Route path={routes.SIGN_IN}>
+        <SignIn />
+      </Route>
     </ApolloProvider>
   );
 }
