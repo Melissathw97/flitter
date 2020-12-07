@@ -9,7 +9,7 @@ const SignIn = React.lazy(() =>
   import('./pages/auth/sign-in')
 );
 
-function App() {
+const App = () => {
 
   return (
     <ApolloProvider client={graphqlClient}>

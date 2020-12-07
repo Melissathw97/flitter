@@ -4,19 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import { Auth0Provider } from '@auth0/auth0-react';
-import { config } from './auth/auth_config.js';
-
-const onRedirectCallback = appState => {
-  window.history.replaceState(
-    {},
-    document.title,
-    appState && appState.targetUrl ?
-      appState.targetUrl
-      :
-      window.location.pathname
-  );
-};
 
 ReactDOM.render(
   <BrowserRouter>
