@@ -12,10 +12,6 @@ const SignIn = () => {
   const handleSubmit = ({ email, password }) => {
     userSignIn(email, password)
       .then(res => {
-
-        console.log(res);
-        debugger
-
         if (res.code === "successfully-signed-in") {
           console.log("Signed in!")
         }

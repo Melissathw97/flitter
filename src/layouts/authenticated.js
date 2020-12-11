@@ -6,8 +6,6 @@ const SignOut = React.lazy(() =>
 );
 
 const AuthenticatedLayout = () => {
-
-  console.log("AUTHENTICATED")
   return (
     <Switch>
       <Route path="/">
