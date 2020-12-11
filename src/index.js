@@ -5,12 +5,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import FirebaseProvider from './utils/Firebase/firebase';
+import { AuthProvider } from './utils/Firebase/auth';
 
 ReactDOM.render(
   <FirebaseProvider>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </AuthProvider>
   </FirebaseProvider>,
   document.getElementById('root')
 );

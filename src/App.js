@@ -4,12 +4,16 @@ import { ApolloProvider } from '@apollo/client';
 import graphqlClient from './lib/graphqlClient';
 import { Switch, Route } from 'react-router-dom';
 import * as routes from './constants/routes';
+import { useAuth } from './utils/Firebase/auth';
 
 const SignIn = React.lazy(() =>
   import('./pages/auth/sign-in')
 );
 
 const App = () => {
+
+  const { isLoggedIn } = useAuth();
+
   return (
     <ApolloProvider client={graphqlClient}>
       <Suspense fallback={<div />}>
