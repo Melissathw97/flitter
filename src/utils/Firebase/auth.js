@@ -25,7 +25,7 @@ const useProvideAuth = () => {
     jwtToken: ""
   });
 
-  const { isLoggedIn } = userSession;
+  const { isLoggedIn, jwtToken } = userSession;
 
   const onAuthStateChange = callback => {
     return firebase.auth().onAuthStateChanged(user => {
@@ -63,7 +63,8 @@ const useProvideAuth = () => {
   return {
     userSignIn,
     userSignOut,
-    isLoggedIn
+    isLoggedIn,
+    jwtToken
   };
 }
 

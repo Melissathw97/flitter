@@ -2,31 +2,33 @@ import React, { Suspense } from 'react';
 import './App.css';
 import { ApolloProvider } from '@apollo/client';
 import graphqlClient from './lib/graphqlClient';
-import { Switch, Route } from 'react-router-dom';
-import * as routes from './constants/routes';
 import { useAuth } from './utils/Firebase/auth';
 
-const SignIn = React.lazy(() =>
-  import('./pages/auth/sign-in')
+const UnauthenticatedLayout = React.lazy(() =>
+  import('./layouts/unauthenticated')
+);
+const AuthenticatedLayout = React.lazy(() =>
+  import('./layouts/authenticated')
 );
 
 const App = () => {
 
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, jwtToken } = useAuth();
+
+  let currentLayout;
+
+  if (isLoggedIn) {
+    currentLayout =
+      <AuthenticatedLayout />
+  } else {
+    currentLayout =
+      <UnauthenticatedLayout />
+  }
 
   return (
-    <ApolloProvider client={graphqlClient}>
+    <ApolloProvider client={graphqlClient(jwtToken)}>
       <Suspense fallback={<div />}>
-        <Switch>
-          <Route exact path={routes.LANDING}>
-            <h1>
-              Hello
-            </h1>
-          </Route>
-          <Route path={routes.SIGN_IN}>
-            <SignIn />
-          </Route>
-        </Switch>
+        {currentLayout}
       </Suspense>
     </ApolloProvider>
   );
