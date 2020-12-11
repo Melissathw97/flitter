@@ -4,10 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import FirebaseProvider from './utils/Firebase/firebase';
 
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <FirebaseProvider>
+      <App />
+    </FirebaseProvider>
   </BrowserRouter>,
   document.getElementById('root')
 );
