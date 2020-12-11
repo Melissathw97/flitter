@@ -22,38 +22,49 @@ const useProvideAuth = () => {
 
   const [userSession, setUserSession] = useState({
     isLoggedIn: false,
-    jwtToken: ""
+    token: ""
   });
 
-  const { isLoggedIn, jwtToken } = userSession;
+  const { isLoggedIn, token: jwtToken } = userSession;
 
   const onAuthStateChange = callback => {
     return firebase.auth().onAuthStateChanged(user => {
       if (user) {
         callback({
           isLoggedIn: true,
-          jwtToken: user.refreshToken
+          token: user.refreshToken
         })
-        console.log("The user is logged in");
       } else {
         callback({
           isLoggedIn: false,
-          jwtToken: ""
+          token: ""
         })
-        console.log("The user is not logged in");
       }
     });
   };
+
+  const onAuthChange = firebase.auth().onAuthStateChanged
 
   useEffect(() => {
     const unsubscribe = onAuthStateChange(setUserSession);
     return () => {
       unsubscribe();
     };
-  }, [firebase.auth().onAuthStateChanged]);
+  }, [onAuthChange]);
 
   const userSignIn = (email, password) => {
-    firebase.auth().signInWithEmailAndPassword(email, password);
+    return firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(({ user }) => {
+        setUserSession({
+          isLoggedIn: true,
+          token: user.refreshToken
+        })
+
+        return { code: "successfully-signed-in" }
+      })
+      .catch(error => {
+        return error
+      });
   };
 
   const userSignOut = () => {

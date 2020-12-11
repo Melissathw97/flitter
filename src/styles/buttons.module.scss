@@ -1,0 +1,19 @@
+.mainButton {
+  background: rgb(29, 161, 242);
+  padding: 10px 30px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  margin: 25px 0 0;
+  color: white;
+  font-weight: bold;
+  font-size: 1.05em;
+  
+  &:hover {
+    background: rgb(26, 145, 218);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}

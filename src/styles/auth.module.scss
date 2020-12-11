@@ -1,0 +1,30 @@
+.page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0 50px;
+  width: 300px;
+  
+  .logo {
+    width: 80px;
+  }
+
+  .title {
+    margin: 20px 0 35px;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+}
