@@ -17,7 +17,7 @@ export {
   FirebaseContext
 };
 
-export default Firebase = ({ children }) => {
+const Firebase = ({ children }) => {
 
   if (!app.apps.length) {
     app.initializeApp(config);
@@ -28,4 +28,6 @@ export default Firebase = ({ children }) => {
       {children}
     </FirebaseContext.Provider>
   )
-}
+};
+
+export default Firebase;

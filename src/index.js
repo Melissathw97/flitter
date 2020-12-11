@@ -7,11 +7,11 @@ import { BrowserRouter } from 'react-router-dom';
 import FirebaseProvider from './utils/Firebase/firebase';
 
 ReactDOM.render(
-  <BrowserRouter>
-    <FirebaseProvider>
+  <FirebaseProvider>
+    <BrowserRouter>
       <App />
-    </FirebaseProvider>
-  </BrowserRouter>,
+    </BrowserRouter>
+  </FirebaseProvider>,
   document.getElementById('root')
 );
 
