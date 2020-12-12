@@ -28,4 +28,14 @@
     align-items: center;
     width: 100%;
   }
+
+  .link {
+    color: rgb(29, 161, 242);
+    margin: 20px 0 0;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }

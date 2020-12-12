@@ -52,6 +52,16 @@ const useProvideAuth = () => {
     };
   }, [onAuthChange]);
 
+  const userSignUp = (email, password) => {
+    return firebase.auth.createUserWithEmailAndPassword(email, password)
+      .then(({ user }) => {
+        setUserSession({
+          isLoggedIn: true,
+          token: user.refreshToken
+        })
+      })
+  }
+
   const userSignIn = (email, password) => {
     return firebase.auth().signInWithEmailAndPassword(email, password)
       .then(({ user }) => {
@@ -72,6 +82,7 @@ const useProvideAuth = () => {
   };
 
   return {
+    userSignUp,
     userSignIn,
     userSignOut,
     isLoggedIn,
