@@ -1,6 +1,7 @@
 import React, { useContext, createContext, useState, useEffect } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/database';
 
 const AuthContext = createContext();
 
@@ -28,12 +29,39 @@ const useProvideAuth = () => {
   const { isLoggedIn, token: jwtToken } = userSession;
 
   const onAuthStateChange = callback => {
-    return firebase.auth().onAuthStateChanged(user => {
+    return firebase.auth().onAuthStateChanged(async user => {
+
       if (user) {
-        callback({
-          isLoggedIn: true,
-          token: user.refreshToken
-        })
+        const token = await user.getIdToken();
+        const idTokenResult = await user.getIdTokenResult();
+
+        const hasuraClaim =
+          idTokenResult.claims["https://hasura.io/jwt/claims"];
+
+        if (typeof hasuraClaim != "undefined") {
+          callback({
+            isLoggedIn: true,
+            token
+          })
+
+        } else {
+          // Check if refresh is required.
+          const metadataRef = firebase
+            .database()
+            .ref("metadata/" + user.uid + "/refreshTime");
+
+          metadataRef.on("value", async (data) => {
+            if (!data.exists) return
+            // Force refresh to pick up the latest custom claims changes.
+            const token = await user.getIdToken(true);
+
+            callback({
+              isLoggedIn: true,
+              token
+            })
+          });
+        }
+
       } else {
         callback({
           isLoggedIn: false,
@@ -53,28 +81,11 @@ const useProvideAuth = () => {
   }, [onAuthChange]);
 
   const userSignUp = (email, password) => {
-    return firebase.auth.createUserWithEmailAndPassword(email, password)
-      .then(({ user }) => {
-        setUserSession({
-          isLoggedIn: true,
-          token: user.refreshToken
-        })
-      })
+    return firebase.auth().createUserWithEmailAndPassword(email, password)
   }
 
   const userSignIn = (email, password) => {
     return firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(({ user }) => {
-        setUserSession({
-          isLoggedIn: true,
-          token: user.refreshToken
-        })
-
-        return { code: "successfully-signed-in" }
-      })
-      .catch(error => {
-        return error
-      });
   };
 
   const userSignOut = () => {

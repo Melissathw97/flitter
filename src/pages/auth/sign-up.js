@@ -15,6 +15,8 @@ const SignUp = () => {
     setIsSubmitting(true);
     userSignUp(email, password)
       .then(res => {
+
+        console.log('res', res)
         if (res.code === "successfully-signed-in") {
           console.log("Signed in!")
         }
