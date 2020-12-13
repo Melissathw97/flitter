@@ -1,5 +1,6 @@
 import React from 'react';
 import styleClasses from '../styles/home.module.scss';
+import Navbar from '../components/navbar';
 import { MainButton, MainOutlinedButton } from '../components/buttons';
 import { Link } from 'react-router-dom';
 import * as routes from '../constants/routes';
@@ -7,26 +8,7 @@ import * as routes from '../constants/routes';
 const HomePage = () => {
   return (
     <>
-      <nav className={styleClasses.navbar}>
-        <div className={styleClasses.logoWrapper}>
-          <img
-            className={styleClasses.logo}
-            src="/assets/images/flitter-logo.png"
-            alt="Flitter logo"
-          />
-          <h3>
-            Flitter
-          </h3>
-        </div>
-        <div className={styleClasses.contentWrapper}>
-          <Link
-            to={routes.SIGN_IN}
-            className={styleClasses.login}
-          >
-            Log In
-          </Link>
-        </div>
-      </nav>
+      <Navbar />
       <section className={styleClasses.section}>
         <div className={styleClasses.wrapper}>
           <h1 className={styleClasses.title}>
