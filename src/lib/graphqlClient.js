@@ -1,6 +1,6 @@
 import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
 
-const GraphqlClient = ({ jwtToken }) => {
+const GraphqlClient = jwtToken => {
 
   const httpLink = new HttpLink({
     uri: process.env.REACT_APP_GRAPHQL_SERVER,

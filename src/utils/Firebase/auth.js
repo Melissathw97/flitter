@@ -35,10 +35,7 @@ const useProvideAuth = () => {
         const token = await user.getIdToken();
         const idTokenResult = await user.getIdTokenResult();
 
-        const hasuraClaim =
-          idTokenResult.claims["https://hasura.io/jwt/claims"];
-
-        if (typeof hasuraClaim != "undefined") {
+        if ('https://hasura.io/jwt/claims' in idTokenResult) {
           callback({
             isLoggedIn: true,
             token

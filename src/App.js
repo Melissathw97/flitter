@@ -23,9 +23,8 @@ const App = () => {
   } else {
     currentLayout =
       <UnauthenticatedLayout />
-  }
+  };
 
-  console.log("APP JWTTOKEN", jwtToken)
   return (
     <ApolloProvider client={graphqlClient(jwtToken)}>
       <Suspense fallback={<div />}>
