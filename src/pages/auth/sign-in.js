@@ -14,18 +14,7 @@ const SignIn = () => {
   const handleSubmit = ({ email, password }) => {
     setIsSubmitting(true);
     userSignIn(email, password)
-      .then(res => {
-        if (res.code === "successfully-signed-in") {
-          console.log("Signed in!")
-        }
-
-        if (res.code === "auth/user-not-found") {
-          console.log("Your e-mail does not match any account in our records. Please sign up as a new user.")
-        }
-
-        if (res.code === "auth/wrong-password") {
-          console.log("E-mail and password do not match")
-        }
+      .then(() => {
         setIsSubmitting(false);
       })
   };

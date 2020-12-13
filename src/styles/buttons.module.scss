@@ -12,8 +12,13 @@
   &:hover {
     background: rgb(26, 145, 218);
   }
-
+  
   &:focus {
     outline: none;
+  }
+  
+  &:disabled {
+    background: rgb(19, 109, 165);
+    color: rgb(196, 196, 196);
   }
 }

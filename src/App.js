@@ -3,6 +3,8 @@ import './App.css';
 import { ApolloProvider } from '@apollo/client';
 import graphqlClient from './lib/graphqlClient';
 import { useAuth } from './utils/Firebase/auth';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const UnauthenticatedLayout = React.lazy(() =>
   import('./layouts/unauthenticated')
@@ -30,6 +32,7 @@ const App = () => {
       <Suspense fallback={<div />}>
         {currentLayout}
       </Suspense>
+      <ToastContainer />
     </ApolloProvider>
   );
 }
