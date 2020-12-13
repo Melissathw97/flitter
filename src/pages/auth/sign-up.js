@@ -5,15 +5,15 @@ import AuthForm from '../../components/forms/authForm';
 import { Link } from 'react-router-dom';
 import * as routes from '../../constants/routes';
 
-const SignIn = () => {
+const SignUp = () => {
 
-  const { userSignIn } = useAuth();
+  const { userSignUp } = useAuth();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = ({ email, password }) => {
     setIsSubmitting(true);
-    userSignIn(email, password)
+    userSignUp(email, password)
       .then(() => {
         setIsSubmitting(false);
       })
@@ -28,21 +28,21 @@ const SignIn = () => {
           className={styleClasses.logo}
         />
         <h2 className={styleClasses.title}>
-          Sign in to Flitter
+          Sign up to Flitter
         </h2>
         <AuthForm
           handleSubmit={handleSubmit}
           isSubmitting={isSubmitting}
         />
         <Link
-          to={routes.SIGN_UP}
+          to={routes.SIGN_IN}
           className={styleClasses.link}
         >
-          New to Flitter? Sign up!
+          Already a user? Sign in!
         </Link>
       </div>
     </div>
   );
-}
+};
 
-export default SignIn;
+export default SignUp;

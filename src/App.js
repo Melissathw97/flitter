@@ -1,21 +1,38 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import './App.css';
 import { ApolloProvider } from '@apollo/client';
 import graphqlClient from './lib/graphqlClient';
-import { Route } from 'react-router-dom';
-import * as routes from './constants/routes';
+import { useAuth } from './utils/Firebase/auth';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const SignIn = React.lazy(() =>
-  import('./pages/auth/sign-in')
+const UnauthenticatedLayout = React.lazy(() =>
+  import('./layouts/unauthenticated')
+);
+const AuthenticatedLayout = React.lazy(() =>
+  import('./layouts/authenticated')
 );
 
 const App = () => {
 
+  const { isLoggedIn, jwtToken } = useAuth();
+
+  let currentLayout;
+
+  if (isLoggedIn) {
+    currentLayout =
+      <AuthenticatedLayout />
+  } else {
+    currentLayout =
+      <UnauthenticatedLayout />
+  };
+
   return (
-    <ApolloProvider client={graphqlClient}>
-      <Route path={routes.SIGN_IN}>
-        <SignIn />
-      </Route>
+    <ApolloProvider client={graphqlClient(jwtToken)}>
+      <Suspense fallback={<div />}>
+        {currentLayout}
+      </Suspense>
+      <ToastContainer />
     </ApolloProvider>
   );
 }
