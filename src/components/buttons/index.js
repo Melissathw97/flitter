@@ -13,6 +13,20 @@ const MainButton = ({ title, type, onClick, disabled }) => {
   )
 }
 
+const MainOutlinedButton = ({ title, type, onClick, disabled }) => {
+  return (
+    <button
+      type={type}
+      onClick={onClick}
+      className={styleClasses.mainOutlinedButton}
+      disabled={disabled}
+    >
+      {title}
+    </button>
+  )
+};
+
 export {
-  MainButton
+  MainButton,
+  MainOutlinedButton
 };
