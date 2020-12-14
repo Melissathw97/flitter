@@ -103,3 +103,29 @@
     }
   }
 }
+
+@media (min-width: 992px) {
+  .pageWrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    height: 90vh;
+    width: 100vw;
+
+    section {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      padding: 0;
+    }
+  }
+
+  .blueSection {
+    .content {
+      line-height: 35px;
+    }
+    .logo {
+      width: 130%;
+      max-width: unset;
+    }
+  }
+}

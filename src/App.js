@@ -5,6 +5,7 @@ import graphqlClient from './lib/graphqlClient';
 import { useAuth } from './utils/Firebase/auth';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BreakpointProvider } from 'react-socks';
 
 const UnauthenticatedLayout = React.lazy(() =>
   import('./layouts/unauthenticated')
@@ -29,9 +30,11 @@ const App = () => {
 
   return (
     <ApolloProvider client={graphqlClient(jwtToken)}>
-      <Suspense fallback={<div />}>
-        {currentLayout}
-      </Suspense>
+      <BreakpointProvider>
+        <Suspense fallback={<div />}>
+          {currentLayout}
+        </Suspense>
+      </BreakpointProvider>
       <ToastContainer />
     </ApolloProvider>
   );
