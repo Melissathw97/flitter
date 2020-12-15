@@ -1,34 +1,31 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import AppLayout from '../components/layouts/app';
 import { useQuery } from '@apollo/client';
 import { USER_PROFILE } from '../lib/graphqlQueries';
 
-const SignOut = React.lazy(() =>
-  import('../pages/auth/sign-out')
+const HomeFeed = React.lazy(() =>
+  import('../pages/user/feed')
 );
 
 const AuthenticatedLayout = () => {
 
-  const { data: profileData, error } = useQuery(USER_PROFILE);
-
-  if (profileData) {
-    console.log('profileData', profileData)
-  }
-
-  if (error) {
-    console.log('error', error)
-  }
+  const { data: profileData } = useQuery(USER_PROFILE);
 
   return (
-    <Switch>
-      <Redirect
-        exact path="/sign-(in|up)"
-        to="/"
-      />
-      <Route path="/">
-        <SignOut />
-      </Route>
-    </Switch>
+    <AppLayout>
+      <Switch>
+        <Redirect
+          exact path="/sign-(in|up)"
+          to="/"
+        />
+        <Route path="/">
+          <HomeFeed
+            profileData={profileData}
+          />
+        </Route>
+      </Switch>
+    </AppLayout>
   )
 };
 
