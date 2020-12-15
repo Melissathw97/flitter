@@ -6,7 +6,9 @@ const AppLayout = ({ children }) => {
     <div>
       <Sidebar />
       <main>
-        {children}
+        <div className="content-container">
+          {children}
+        </div>
       </main>
     </div>
   )
