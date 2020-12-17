@@ -1,10 +1,12 @@
 import React from 'react';
 import Sidebar from '../navigation/sidebar';
 
-const AppLayout = ({ children }) => {
+const AppLayout = ({ profileData, children }) => {
   return (
     <div>
-      <Sidebar />
+      <Sidebar
+        profileData={profileData}
+      />
       <main>
         <div className="content-container">
           {children}

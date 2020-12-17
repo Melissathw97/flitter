@@ -13,7 +13,7 @@ const AuthenticatedLayout = () => {
   const { data: profileData } = useQuery(USER_PROFILE);
 
   return (
-    <AppLayout>
+    <AppLayout profileData={profileData}>
       <Switch>
         <Redirect
           exact path="/sign-(in|up)"
