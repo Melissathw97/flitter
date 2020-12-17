@@ -8,9 +8,14 @@
   padding: 20px 0;
 
   .iconWrapper {
-    padding: 5px 8px;
+    height: 45px;
+    width: 45px;
     border-radius: 50%;
     cursor: pointer;
+    display: grid;
+    place-content: center;
+    margin: 0 0 5px;
+    transition: all 0.2s ease;
     
     .icon {
       width: 25px;
