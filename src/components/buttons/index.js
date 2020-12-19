@@ -26,7 +26,21 @@ const MainOutlinedButton = ({ title, type, onClick, disabled }) => {
   )
 };
 
+const ButtonLink = ({ title, type, onClick, disabled }) => {
+  return (
+    <button
+      type={type}
+      onClick={onClick}
+      className={styleClasses.buttonLink}
+      disabled={disabled}
+    >
+      {title}
+    </button>
+  )
+}
+
 export {
   MainButton,
-  MainOutlinedButton
+  MainOutlinedButton,
+  ButtonLink
 };

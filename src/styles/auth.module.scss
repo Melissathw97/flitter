@@ -15,7 +15,7 @@
   max-width: 90vw;
   
   .logo {
-    width: 80px;
+    width: 60px;
   }
 
   .title {
@@ -27,6 +27,10 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+
+    .buttonWrapper {
+      margin: 20px 0 0;
+    }
   }
 
   .link {

@@ -1,24 +1,28 @@
+.mainButton, .mainOutlinedButton, .buttonLink {
+  font-weight: bold;
+  font-size: 1.05em;
+  border: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}
+
 .mainButton, .mainOutlinedButton {
   background: rgb(29, 161, 242);
   padding: 10px 30px;
   border-radius: 25px;
-  border: none;
-  cursor: pointer;
   color: white;
-  font-weight: bold;
-  font-size: 1.05em;
   
   &:hover {
     background: rgb(26, 145, 218);
   }
   
-  &:focus {
-    outline: none;
-  }
-  
   &:disabled {
     background: rgb(19, 109, 165);
     color: rgb(196, 196, 196);
+    cursor: default;
   }
 }
 
@@ -29,5 +33,15 @@
 
   &:hover {
     background: rgba(29, 161, 242, 0.1);
+  }
+}
+
+.buttonLink {
+  background: none;
+  color: rgb(29, 161, 242);
+  margin: 0 10px;
+
+  &:hover {
+    color: rgb(26, 145, 218);
   }
 }

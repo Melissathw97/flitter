@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styleClasses from '../../styles/auth.module.scss';
 import { useAuth } from '../../utils/Firebase/auth';
-import AuthForm from '../../components/forms/authForm';
+import SignInForm from '../../components/forms/auth/signIn';
 import { Link } from 'react-router-dom';
 import * as routes from '../../constants/routes';
 
@@ -30,7 +30,7 @@ const SignIn = () => {
         <h2 className={styleClasses.title}>
           Sign in to Flitter
         </h2>
-        <AuthForm
+        <SignInForm
           handleSubmit={handleSubmit}
           isSubmitting={isSubmitting}
         />
