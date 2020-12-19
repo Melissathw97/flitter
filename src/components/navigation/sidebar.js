@@ -4,10 +4,15 @@ import { icons } from '../../constants/navIcons';
 import { Link } from 'react-router-dom';
 
 const Sidebar = ({ profileData }) => {
+
+  const [{
+    username
+  }] = profileData.users;
+
   return (
     <nav className={styleClasses.sidebar}>
       {
-        icons.map(({ id, path, icon }) => (
+        icons(username).map(({ id, path, icon }) => (
           <Link
             key={id}
             to={path}

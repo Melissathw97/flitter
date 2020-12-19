@@ -10,22 +10,28 @@ const HomeFeed = React.lazy(() =>
 
 const AuthenticatedLayout = () => {
 
-  const { data: profileData } = useQuery(USER_PROFILE);
+  const { data: profileData, loading: loadingProfile } = useQuery(USER_PROFILE);
 
   return (
-    <AppLayout profileData={profileData}>
-      <Switch>
-        <Redirect
-          exact path="/sign-(in|up)"
-          to="/"
-        />
-        <Route path="/">
-          <HomeFeed
-            profileData={profileData}
-          />
-        </Route>
-      </Switch>
-    </AppLayout>
+    <>
+      {
+        loadingProfile ?
+          null :
+          <AppLayout profileData={profileData}>
+            <Switch>
+              <Redirect
+                exact path="/sign-(in|up)"
+                to="/"
+              />
+              <Route path="/">
+                <HomeFeed
+                  profileData={profileData}
+                />
+              </Route>
+            </Switch>
+          </AppLayout>
+      }
+    </>
   )
 };
 
